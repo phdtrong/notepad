@@ -1,4 +1,5 @@
 // TODO: implement classes and methods for notes (ability to write notes, delete notes, sort them, etc.)
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -32,6 +33,24 @@ public:
   }
 
 
-  // constructor
+  //default constructor
+  Entry() : _header(""), _body("") {};
+  // parameterized constructor
   Entry(std::string header, std::string body) : _header(header), _body(body) {};
 };
+
+
+
+// this function returns a newly written entry
+Entry* new_entry()
+{
+  std::string header_input, body_input;
+
+  std::cout << "header: ";
+  getline(std::cin, header_input);
+  std::cout << "body: ";
+  getline(std::cin, body_input);
+
+  Entry* entry = new Entry(header_input, body_input);
+  return entry;
+}
