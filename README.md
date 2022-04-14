@@ -2,5 +2,5 @@
 
 # by:
 # Ares hamilton
-# (insert name here)
+# John Dinh
 # (insert name here)
