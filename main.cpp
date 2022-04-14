@@ -9,26 +9,27 @@
 int main()
 {
   Entry* written_entry;
-  int selection;
+  unsigned selection;
   std::vector<Entry*> notepad;
 
 
-  std::cout << "Notepad Program\n(type in a number to select an option)\n";
+  std::cout << "Notepad Program\n";
 
   // this loop keeps the menu up until the user exits the program
   do
   {
-    std::cout << "1: Make a new entry\n"
-              << "2: Delete an entry\n"
-              << "3: View notepad\n"
-              << "4: Save notepad\n"
-              << "5: Import notepad file\n"
+    std::cout << "\nMain menu:\n(type in a number to select an option)\n"
+              << "1: Make a new entry\n"
+              << "2: View notepad\n"
+              << "3: Save notepad\n"
+              << "4: Import notepad file\n"
+              << "5: View changelog\n"
               << "0: Close program\n";
 
     std::cin >> selection;
     // this instruction allows user inputs to work properly
     std::cin.ignore();
-    
+
     switch (selection)
     {
       case 0:
@@ -37,9 +38,11 @@ int main()
         written_entry = new_entry();
         notepad.push_back(written_entry);
         break;
-
+      case 2:
+        notepad_view(notepad);
+        break;
       default:
-        std::cout << "That is not a valid input\n";
+        std::cout << "\n";
     }
   } while (selection != 0);
 
