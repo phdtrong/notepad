@@ -2,6 +2,7 @@
 //       i.e. writing a new note, deleting a note, etc.
 #include <string>
 #include <fstream>
+#include <iostream>
 
 void changelog_writer(std::string stringone, std::string stringtwo)//writes whatever updates to the text file, stringone contains the change, stringtwo contains what actually updated
 {
@@ -9,7 +10,7 @@ void changelog_writer(std::string stringone, std::string stringtwo)//writes what
 
   file_opener.open("Changelog.txt", std::fstream::app);//accessing the file and std::fstream::app appends to the text file, not overwriting it
 
-  string1 = stringone  + " ";//added separator for strings
+  stringone = stringone  + " ";//added separator for strings
 
   file_opener << stringone;//write the change to the file
 

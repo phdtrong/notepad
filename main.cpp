@@ -10,6 +10,7 @@ int main()
 {
   Entry* written_entry;
   unsigned selection;
+  std::string file;
   std::vector<Entry*> notepad;
 
 
@@ -41,10 +42,21 @@ int main()
       case 2:
         notepad_view(notepad);
         break;
+      case 3:
+        std::cout << "\nName of file: ";
+        std::cin >> file;
+        save_notepad(file, notepad);
+        break;
+      case 4:
+        import_notepad(notepad);
+        break;
       default:
         std::cout << "\n";
     }
   } while (selection != 0);
 
+
+  // notepad is autosaved, even if the user did not save
+  save_notepad("autosave", notepad);
   return 0;
 }
