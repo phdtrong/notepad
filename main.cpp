@@ -38,17 +38,22 @@ int main()
       case 1:
         written_entry = new_entry();
         notepad.push_back(written_entry);
+        changelog_writer("New entry", "New entry created");
         break;
       case 2:
         notepad_view(notepad);
+        changelog_writer("Entry viewed", "Viewed entry");
         break;
       case 3:
         std::cout << "\nName of file: ";
         std::cin >> file;
+        std::string filename = "File named " + file + " saved";
+        changelog_writer("Entry saved", filename);
         save_notepad(file, notepad);
         break;
       case 4:
         import_notepad(notepad);
+        changelog_writer("Entry imported", "Imported new entry");
         break;
       default:
         std::cout << "\n";
