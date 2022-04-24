@@ -1,5 +1,3 @@
-// TODO: main should start the program and hold the menu
-#include "changelog.cpp"
 #include "notes.cpp"
 #include <iostream>
 #include <string>
@@ -36,24 +34,26 @@ int main()
       case 0:
         break;
       case 1:
+        // user adds an entry
         written_entry = new_entry();
         notepad.push_back(written_entry);
-        changelog_writer("New entry", "New entry created");
+        changelog_writer("Entry addition",
+                          written_entry->get_header() + "added");
         break;
       case 2:
+        // user views notepad
         notepad_view(notepad);
-        changelog_writer("Entry viewed", "Viewed entry");
         break;
       case 3:
+        // user saves notepad to file
         std::cout << "\nName of file: ";
         std::cin >> file;
-        std::string filename = "File named " + file + " saved";
-        changelog_writer("Entry saved", filename);
+        changelog_writer("Notepad save", "File named " + file + " saved");
         save_notepad(file, notepad);
         break;
       case 4:
+        // user imports notepad from file
         import_notepad(notepad);
-        changelog_writer("Entry imported", "Imported new entry");
         break;
       default:
         std::cout << "\n";
@@ -63,5 +63,6 @@ int main()
 
   // notepad is autosaved, even if the user did not save
   save_notepad("autosave", notepad);
+  changelog_writer("autosave", "autosave file updated ");
   return 0;
 }

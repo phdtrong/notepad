@@ -1,5 +1,4 @@
-// TODO: implement classes and methods for notes (ability to write notes, delete notes, sort them, etc.)
-#include <fstream>
+#include "changelog.cpp"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -41,6 +40,44 @@ public:
 };
 
 
+// this function handles the partitioning for the quick sort algorithm
+unsigned partition(std::vector<Entry*>& notepad, unsigned low, unsigned high)
+{
+  unsigned j = low;
+  Entry* swap = new Entry();
+  std::string pivot = notepad[high]->get_header();
+  for (int i = low; i < high; i++)
+  {
+    if (notepad[i]->get_header() <= pivot)
+    {
+      swap = notepad[i];
+      notepad[i] = notepad[j];
+      notepad[j] = swap;
+      j++;
+    }
+  }
+  swap = notepad[high];
+  notepad[high] = notepad[j];
+  notepad[j] = swap;
+  return j;
+}
+
+
+
+// this function will use a quick sort algorithm to reorder the entries
+void quick_sort(std::vector<Entry*>& notepad, unsigned low, unsigned high)
+{
+
+  // return once the sorting is done
+  if (low >= high)
+  {
+    return;
+  }
+  unsigned j = partition(notepad, low, high);
+  quick_sort(notepad, low, j - 1);
+  quick_sort(notepad, j + 1, high);
+}
+
 
 // this function returns a newly written entry
 Entry* new_entry()
@@ -78,35 +115,45 @@ void entry_view(std::vector<Entry*>& notepad, unsigned entry_spot)
               << "3. Delete entry\n"
               << "0. Return to notepad\n";
     std::cin >> selection;
+    std::cin.ignore();
 
     switch (selection)
     {
       case 0:
         break;
       case 1:
+        // user edits header
         std::cout << "new header: ";
-        std::cin >> edit;
+        getline(std::cin, edit);
+        changelog_writer("Entry edit", "changed header of " +
+                          notepad[entry_spot - 1]->get_header());
         notepad[entry_spot -1]->set_header(edit);
         break;
       case 2:
+        // user edits body
         std::cout << "new body: ";
-        std::cin >> edit;
+        getline(std::cin, edit);
+        changelog_writer("Entry edit", "changed body of " +
+                          notepad[entry_spot - 1]->get_header());
         notepad[entry_spot -1]->set_body(edit);
         break;
       case 3:
+        // user deletes entry
+        changelog_writer("Entry deletion",
+                          notepad[entry_spot - 1]->get_header() + " deleted");
         notepad.erase(notepad.begin() + entry_spot - 1);
         return;
       default:
         std::cout << "\n";
     }
-  } while (selection !=0);
+  } while (selection != 0);
   return;
 }
 
 // this function displays the list of entries in the notepad
 void notepad_view(std::vector<Entry*>& notepad)
 {
-  unsigned selection;
+  int selection;
 
   do
   {
@@ -117,15 +164,20 @@ void notepad_view(std::vector<Entry*>& notepad)
     {
       std::cout <<  i + 1 << ": "<< notepad[i]->get_header() << "\n";
     }
-
+    std::cout << "-1: sort notepad\n";
     std::cout << "0: Return to main menu\n";
 
     // the user can select a specific entry to view
     std::cin >> selection;
-    if (selection >= 1 && selection <= notepad.size())
+    if (selection == -1)
+    {
+      // the user can sort the notepad in alphabetical order
+      quick_sort(notepad, 0, notepad.size() - 1);
+      //selection_sort(notepad);
+    } else if (selection >= 1 && selection <= notepad.size())
     {
       entry_view(notepad, selection);
-    } else if (selection > notepad.size() || selection < 0)
+    } else if (selection > notepad.size() || selection < -1)
     {
       std::cout << "\n";
     }
@@ -184,4 +236,5 @@ void import_notepad(std::vector<Entry*>& notepad)
 
   import.close();
   std::cout << "\nNotepad imported from " << file << "\n";
+  changelog_writer("Notepad import", "File named " + file + " imported");
 }
