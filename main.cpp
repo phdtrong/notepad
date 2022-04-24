@@ -1,3 +1,22 @@
+/* Program name: "Notepad"
+This program is used to create, view, save, and sort notepads.
+Copyright (C) 2022 John Dinh, Triet Le, Ares Hamilton
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+File name: main.cpp
+This file contains the main menu for the program.
+Last modified by: Ares Hamilton
+*/
+
 #include "notes.cpp"
 #include <iostream>
 #include <string>
@@ -38,7 +57,7 @@ int main()
         written_entry = new_entry();
         notepad.push_back(written_entry);
         changelog_writer("Entry addition",
-                          written_entry->get_header() + "added");
+                          written_entry->get_header() + " added");
         break;
       case 2:
         // user views notepad
@@ -55,6 +74,9 @@ int main()
         // user imports notepad from file
         import_notepad(notepad);
         break;
+      case 5:
+        // user views changelog;
+        changelog_reader();
       default:
         std::cout << "\n";
     }
