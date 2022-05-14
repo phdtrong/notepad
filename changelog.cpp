@@ -13,7 +13,6 @@ File name: changelog.cpp
 This file contains functions related to the changelog.
 Last modified by: John Dinh
 */
-
 #include <string>
 #include <fstream>
 #include <iostream>

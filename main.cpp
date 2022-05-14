@@ -16,12 +16,10 @@ File name: main.cpp
 This file contains the main menu for the program.
 Last modified by: Ares Hamilton
 */
-
+#pragma once
 #include "notes.cpp"
-#include <iostream>
 #include <string>
 #include <vector>
-
 
 int main()
 {

@@ -17,15 +17,10 @@ This file contains all functions and classes pertaining to notepads and their
 respective entries.
 Last modified by: Ares Hamilton
 */
-
+#pragma once
 #include "changelog.cpp"
 #include "entry.h"
-#include <iostream>
-#include <string>
 #include <vector>
-
-// this class pertains to each entry a user would create in the notepad
-
 
 
 // this function handles the partitioning for the quick sort algorithm

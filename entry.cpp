@@ -1,9 +1,12 @@
+#pragma once
+#ifndef __ENTRY_CPP__
+#define __ENTRY_CPP__
 #include "entry.h"
-// getters and setters for each attribute
-  std::string Entry::get_header()
-  {
+  // getters and setters for each 
+std::string Entry::get_header()
+{
     return _header;
-  }
+}
 
   std::string Entry::get_body()
   {
@@ -24,3 +27,4 @@
   Entry::Entry() : _header(""), _body("") {};
   // parameterized constructor
   Entry::Entry(std::string header, std::string body) : _header(header), _body(body) {};
+#endif

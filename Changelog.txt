@@ -14,3 +14,5 @@ Notepad save: File named -1 saved
 Notepad save: File named demo.txt saved
 Entry addition: demo2.txt added
 Notepad save: File named demo2.txt saved
+autosave: autosave file updated 
+autosave: autosave file updated 
