@@ -1,0 +1,16 @@
+autosave: autosave file updated 
+autosave: autosave file updated 
+autosave: autosave file updated 
+autosave: autosave file updated 
+Entry addition: hello added
+Notepad save: File named hello saved
+autosave: autosave file updated 
+Notepad import: File named notes.o imported
+Entry addition: kakatitle added
+Entry edit: changed header of kakatitle
+autosave: autosave file updated 
+Notepad save: File named demo.txt saved
+Notepad save: File named -1 saved
+Notepad save: File named demo.txt saved
+Entry addition: demo2.txt added
+Notepad save: File named demo2.txt saved
