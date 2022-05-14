@@ -49,4 +49,3 @@ void changelog_reader()
     std::cout << file_line << std::endl;//output it to the terminal
   }
 }
-© 2022 GitHub, In
